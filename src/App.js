@@ -1,14 +1,15 @@
 import React from 'react';
 import Navigation from './components/Navigation/index';
+import AuthContextProvider from './contexts/AuthContext';
 
 function App() {
   return (
-    <React.Fragment>
+    <AuthContextProvider>
       <Navigation />
       <div className="container">
         <h1>Hola Cinta Negra</h1>
       </div>
-    </React.Fragment>
+    </AuthContextProvider>
   );
 }
 
