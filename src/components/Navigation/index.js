@@ -17,13 +17,13 @@ import {
 
 const Navigation = (props) => {
     const [isOpen, setIsOpen] = useState(false);
-    const { mascota } = useContext(AuthContext);
+    const { nombre } = useContext(AuthContext);
 
     const toggle = () => setIsOpen(!isOpen);
 
     return (
         <Navbar color="light" light expand="md">
-            <NavbarBrand href="/">{mascota}</NavbarBrand>
+            <NavbarBrand href="/">{nombre}</NavbarBrand>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
                 <Nav className="mr-auto" navbar>

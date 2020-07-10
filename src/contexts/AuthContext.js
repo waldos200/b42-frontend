@@ -1,13 +1,15 @@
-import React, { createContext } from 'react';
+import React, { createContext, useState } from 'react';
 
 export const AuthContext = createContext();
 
-const AuthContextProvider = (props) => {  
-  return (
-    <AuthContext.Provider value={{ mascota: 'Jens' }}>
-      { props.children }
-    </AuthContext.Provider>
-  )
+const AuthContextProvider = (props) => {
+    const [nombre, setNombre] = useState('');
+
+    return (
+        <AuthContext.Provider value={{ nombre, setNombre }}>
+            {props.children}
+        </AuthContext.Provider>
+    )
 };
 
 export default AuthContextProvider;
