@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import axios from 'axios';
 import {
   Button,  
   Form,  
@@ -13,7 +15,7 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleForm = (e) => {
+  const handleForm = async (e) => {
     e.preventDefault();
     const jsonSend = {
       first_name: firstName,
@@ -21,8 +23,18 @@ const Signup = () => {
       email,
       password
     };
-    console.log(jsonSend);
-  }
+    const SIGNUP_URI = `${process.env.REACT_APP_BASE_URL}/signup`;
+    try {
+      await axios.post(SIGNUP_URI, jsonSend);
+      setFirstName('');
+      setLastName('');
+      setEmail('');
+      setPassword('');
+      alert('Successfull signup!');
+    } catch (error) {
+      alert('Error on signup');
+    }
+  };
 
   return (
     <React.Fragment>
