@@ -1,25 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthContext';
 import axios from 'axios';
 import {
-  Button,
-  Form,
+  Button,  
+  Form,  
   FormGroup,
-  Label,
+  Label,  
   Input,
 } from 'reactstrap';
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { setToken, setIsAuth } = useContext(AuthContext);
 
   const handleForm = async (e) => {
     e.preventDefault();
-    const jsonSend = {email, password};
-    const LOGIN_URI = `${process.env.REACT_APP_BASE_URL}/login`;
+    const jsonSend = { email, password };
+    const LOGIN_URI = `${process.env.REACT_APP_BACKEND_BASE_URL}/login`;
+    console.log(jsonSend);
     try {
       const res = await axios.post(LOGIN_URI, jsonSend);
+      localStorage.setItem('maui_token', res.data.token);
+      setToken(res.data.token);
+      setIsAuth(true);
       alert('Successful login!');
-      localStorage.setItem('waldo_token', res.data.token);
     } catch (error) {
       alert('Error on login');
     }
@@ -54,5 +59,5 @@ const Login = () => {
     </React.Fragment>
   );
 }
-
+ 
 export default Login;
