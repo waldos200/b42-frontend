@@ -51,6 +51,9 @@ const Navigation = () => {
         <NavItem>
           <NavLink tag={Link} to="/logout">Logout</NavLink>
         </NavItem>
+        <NavItem>
+          <NavLink tag={Link} to="/userslist">Usuarios</NavLink>
+        </NavItem>
       </Nav>
     </Collapse>
   </Navbar>)
