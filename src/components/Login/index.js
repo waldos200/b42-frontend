@@ -12,18 +12,15 @@ import {
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { setToken, setIsAuth } = useContext(AuthContext);
+  const { loginUser } = useContext(AuthContext);
 
   const handleForm = async (e) => {
     e.preventDefault();
     const jsonSend = { email, password };
-    const LOGIN_URI = `${process.env.REACT_APP_BACKEND_BASE_URL}/login`;
-    console.log(jsonSend);
+    const LOGIN_URI = `${process.env.REACT_APP_BASE_URL}/login`;
     try {
       const res = await axios.post(LOGIN_URI, jsonSend);
-      localStorage.setItem('maui_token', res.data.token);
-      setToken(res.data.token);
-      setIsAuth(true);
+      loginUser(res.data.token);
       alert('Successful login!');
     } catch (error) {
       alert('Error on login');

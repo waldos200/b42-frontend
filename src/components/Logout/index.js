@@ -3,10 +3,8 @@ import { AuthContext } from '../../contexts/AuthContext';
 import { Redirect } from 'react-router-dom';
 
 const Logout = () => {
-  const { setIsAuth, setToken } = useContext(AuthContext);
-  setIsAuth(false);
-  setToken('');
-  localStorage.removeItem('maui_token')
+  const { logoutUser } = useContext(AuthContext);
+  logoutUser();
   alert('Successful logout');
   return (
     <Redirect to="/login" />
