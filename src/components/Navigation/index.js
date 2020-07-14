@@ -18,7 +18,6 @@ const Navigation = () => {
  const toggle = () => setIsOpen(!isOpen);
 
  const publicNavbar = () => {
-   console.log(user);
    return (
    <Navbar
      className="navbar navbar-dark bg-dark"
@@ -40,7 +39,6 @@ const Navigation = () => {
  }
 
  const authNavbar = () => {
-   console.log(user);
   return (
   <Navbar
     className="navbar navbar-dark bg-dark"
